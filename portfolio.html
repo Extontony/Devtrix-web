@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Devtrix | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #000;
+      color: #e6e6e6;
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      min-height: 100vh;
+    }
+    .hamburger {
+      position: fixed;
+      top: 30px;
+      left: 24px;
+      z-index: 1101;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+    .bar {
+      width: 32px;
+      height: 4px;
+      background: #00f0ff;
+      margin: 5px 0;
+      border-radius: 2px;
+      box-shadow: 0 0 12px #00f0ff99;
+      transition: 0.4s;
+    }
+.hamburger.open .bar:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 7px);
+    }
+    .hamburger.open .bar:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.open .bar:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -7px);
+    }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 0;
+      background: #000;
+      box-shadow: 4px 0 32px #00f0ff44;
+      overflow-x: hidden;
+      transition: width 0.4s cubic-bezier(.77,0,.18,1);
+      z-index: 1100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 80px;
+    }
+    .sidebar.open {
+      width: 50vw;
+      min-width: 220px;
+      max-width: 400px;
+    }
+    .sidebar a {
+      color: #00f0ff;
+      text-decoration: none;
+      font-size: 2em;
+      margin: 24px 0;
+      font-weight: bold;
+      text-shadow: 0 0 8px #00f0ff, 0 0 2px #fff;
+      transition: color 0.2s;
+      opacity: 0;
+ transform: translateX(-40px);
+      transition: opacity 0.3s, transform 0.3s;
+      letter-spacing: 1px;
+    }
+    .sidebar.open a {
+      opacity: 1;
+      transform: translateX(0);
+      transition-delay: 0.2s;
+    }
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: #0008;
+      z-index: 1099;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .portfolio-section {
+      max-width: 900px;
+      margin: 120px auto 0;
+      padding: 40px 20px 60px;
+      text-align: center;
+    }
+    .portfolio-section h1 {
+      color: #00f0ff;
+      font-size: 2.5em;
+      margin-bottom: 40px;
+      text-shadow: 0 0 24px #00f0ff, 0 0 8px #00f0ff77;
+      letter-spacing: 2px;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 40px;
+    }
+.project-card {
+      background: #13131f;
+      border-radius: 18px;
+      box-shadow: 0 0 24px #00f0ff33, 0 2px 8px #0006;
+      padding: 30px 18px 22px;
+      text-align: center;
+      border: 2px solid #00f0ff33;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card img {
+      width: 100%;
+      border-radius: 10px;
+      border: 2px solid #00f0ff44;
+      margin-bottom: 18px;
+      box-shadow: 0 0 12px #00f0ff44;
+      background: #222;
+    }
+    .project-card h3 {
+      color: #00f0ff;
+      margin-bottom: 10px;
+      font-size: 1.3em;
+      letter-spacing: 1px;
+      text-shadow: 0 0 8px #00f0ff77;
+    }
+    .project-card p {
+      color: #b2f7ff;
+      font-size: 1.05em;
+    }
+    @media (max-width: 700px) {
+      .sidebar.open { width: 80vw; min-width: 0; }
+      .sidebar a { font-size: 1.3em; }
+      .portfolio-section { padding: 20px 10px 40px; }
+      .projects-grid { gap: 20px; }
+      }
+  </style>
+</head>
+<body>
+  <!-- Hamburger -->
+  <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </button>
+  <!-- Sidebar Menu -->
+  <div class="sidebar" id="sidebarMenu">
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="#">Services</a>
+    <a href="#">About</a>
+    <a href="#">Blog</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="overlay" id="menuOverlay"></div>
+  <!-- Portfolio Content -->
+  <section class="portfolio-section">
+    <h1>Our Portfolio</h1>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img src="project1.jpg" alt="Project 1">
+        <h3>Project Name 1</h3>
+        <p>Short description of project 1 goes here.</p>
+      </div>
+      <div class="project-card">
+        <img src="project2.jpg" alt="Project 2">
+        <h3>Project Name 2</h3>
+<p>Short description of project 2 goes here.</p>
+      </div>
+      <div class="project-card">
+        <img src="project3.jpg" alt="Project 3">
+        <h3>Project Name 3</h3>
+        <p>Short description of project 3 goes here.</p>
+      </div>
+    </div>
+  </section>
+  <script>
+    const hamburger = document.getElementById('hamburgerBtn');
+    const sidebar = document.getElementById('sidebarMenu');
+    const overlay = document.getElementById('menuOverlay');
+    function toggleMenu() {
+      sidebar.classList.toggle('open');
+      hamburger.classList.toggle('open');
+      overlay.classList.toggle('show');
+    }
+    hamburger.onclick = toggleMenu;
+    overlay.onclick = toggleMenu;
+  </script>
+</body>
+</html>
